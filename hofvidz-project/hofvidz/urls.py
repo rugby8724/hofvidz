@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.HomePage.as_view(), name='home'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     # we don't need to register models in accounts admin.py because we are using
-    # djangos built in user model 
+    # djangos built in user model
     path('accounts', include('django.contrib.auth.urls')),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIR)
