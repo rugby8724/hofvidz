@@ -27,7 +27,7 @@ urlpatterns = [
     # we don't need to register models in accounts admin.py because we are using
     # djangos built in user model
     path('accounts/', include('django.contrib.auth.urls')),
-    paht('halls/', include('halls.urls', namespace='halls'))
+    path('halloffame/', include('halls.urls', namespace='halls'))
 ]
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
