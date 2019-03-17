@@ -1,0 +1,9 @@
+{% extends 'halls/halls_base.html' %}
+
+{% block halls_content %}
+<div class="container">
+    <h1>{{ hall.title}}</h1>
+    <h4 class='text-muted' >@{{ hall.user.username }}</h4>
+</div>
+
+{% endblock %}
