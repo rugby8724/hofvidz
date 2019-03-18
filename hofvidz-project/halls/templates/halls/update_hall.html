@@ -1,0 +1,19 @@
+{% extends 'halls/halls_base.html' %}
+{% load bootstrap4 %}
+
+{% block halls_content %}
+
+<div class="container">
+    <h1>Edit Hall of Fame</h1>
+    <form class="" action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+    <input class="btn btn-primary btn-large" type="submit"  value="Save">
+
+    </form>
+
+    <a class="btn btn-danger btn-large" href="{% url 'halls:delete_hall' hall.id %}">Delete</a>
+
+</div>
+
+{% endblock %}
