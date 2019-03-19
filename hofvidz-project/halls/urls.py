@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:pk>/', views.DetailHall.as_view(), name='detail_hall'),
     path('update/<int:pk>/', views.UpdateHall.as_view(), name='update_hall'),
     path('delete/<int:pk>/', views.DeleteHall.as_view(), name='delete_hall'),
+    path('addvideo/<int:pk>/', views.add_video, name='add_video'),
 ]

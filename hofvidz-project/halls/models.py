@@ -11,5 +11,5 @@ class Hall(models.Model):
 class Video(models.Model):
     title = models.CharField(max_length=257)
     url = models.URLField()
-    youtube_id=models.CharField(max_length=257)
+    youtube_id = models.CharField(max_length=257)
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE)

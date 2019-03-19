@@ -1,0 +1,28 @@
+{% extends 'halls/halls_base.html' %}
+{% load bootstrap4 %}
+
+{% block halls_content %}
+
+    <div class="container">
+        <h3>Add video</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {% load widget_tweaks %}
+            {% for field in form %}
+                <div class="form-group {% if field.errors %}alert alert-danger{% endif %} ">
+                    {{ field.erros }}
+                    {{ field.label_tag }}
+                    {% render_field field class='form-control' %}
+                </div>
+            {% endfor %}
+
+            <input class="btn btn-primary btn-large" type="submit" value="Add Video">
+        </form>
+        <h2>OR</h2>
+        <form>
+            {% csrf_token %}
+            {{ search_form }}
+        </form>
+    </div>
+
+{% endblock %}
