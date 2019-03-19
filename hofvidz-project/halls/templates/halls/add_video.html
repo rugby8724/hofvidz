@@ -4,7 +4,7 @@
 {% block halls_content %}
 
     <div class="container">
-        <h3>Add video</h3>
+        <h3>Add video to {{ hall.title }}</h3>
         <form method="POST">
             {% csrf_token %}
             {% load widget_tweaks %}
@@ -18,11 +18,27 @@
 
             <input class="btn btn-primary btn-large" type="submit" value="Add Video">
         </form>
+        <br>
         <h2>OR</h2>
         <form>
             {% csrf_token %}
-            {{ search_form }}
+            {% for field in search_form  %}
+                <div class="form-group">
+                    {{ field.erros }}
+                    {{ field.label_tag }}
+                    {% render_field field class='form-control' %}
+                </div>
+            {% endfor %}
         </form>
+        <div id='search_results' class="">
+            <script>
+                var delyTimer;
+                $('#id_search_term').keyup(function(){
+                    clearTimeout(delyTimer);
+                    $('#search_results').text('Loading...');
+                });
+            </script>
+        </div>
     </div>
 
 {% endblock %}
