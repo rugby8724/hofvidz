@@ -32,10 +32,22 @@
         </form>
         <div id='search_results' class="">
             <script>
-                var delyTimer;
+                var delayTimer;
                 $('#id_search_term').keyup(function(){
-                    clearTimeout(delyTimer);
+                    clearTimeout(delayTimer);
                     $('#search_results').text('Loading...');
+                    delayTimer = setTimeout(function(){
+                        $.ajax({
+                            url: 'video/search/',
+                            data: {
+                                'search_term': 'hello'
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                $('#search_results').text('AJAX OK');
+                            }
+                        });
+                    }, 2500);
                 });
             </script>
         </div>

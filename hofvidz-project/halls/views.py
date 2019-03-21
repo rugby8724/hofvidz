@@ -3,7 +3,7 @@ from django.views import generic
 from django.urls import reverse, reverse_lazy
 from .models import Hall, Video
 from . forms import VideoForm, SearchForm
-from django.http import Http404
+from django.http import Http404, JsonResponse
 import urllib
 import requests
 from django.forms.utils import ErrorList
@@ -74,3 +74,6 @@ def add_video(request, pk):
                 errors.append('Needs to be a YouTube URL')
 
     return render(request, 'halls/add_video.html', {'form':form, 'search_form':search_form, 'hall':hall})
+
+def video_search(request):
+    return JsonResponse({'hello': 'yup'})
