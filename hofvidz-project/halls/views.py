@@ -76,4 +76,9 @@ def add_video(request, pk):
     return render(request, 'halls/add_video.html', {'form':form, 'search_form':search_form, 'hall':hall})
 
 def video_search(request, pk):
-    return JsonResponse({'hello': 'yup'})
+    search_form = SearchForm(request.GET)
+    if search_form.is_valid():
+        encoded_search_term = urllib.parse.quote(search_form.cleaned_data['search_term'])
+        response = requests.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q={ encoded_search_term }&key={ YOUTUBE_API_KEY }')
+        return JsonResponse(response.json())
+    return JsonResponse({'error': 'Not able to validate form'})
