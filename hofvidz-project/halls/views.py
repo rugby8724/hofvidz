@@ -16,6 +16,10 @@ YOUTUBE_API_KEY = 'AIzaSyDS5gLP-Ybf6Qry4tG3DaYXePdf5HwPAmw'
 class HallsTest(generic.TemplateView):
     template_name = 'halls_test.html'
 
+def dashboard(request):
+    halls = Hall.objects.filter(user=request.user)
+    return render(request, 'halls/dashboard.html/', {'halls':halls})
+
 class CreateHall(generic.CreateView):
     model = Hall
     fields = ['title']
@@ -25,7 +29,7 @@ class CreateHall(generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         super(CreateHall, self).form_valid(form)
-        return redirect('dashboard')
+        return redirect('halls:dashboard')
 
 
 class DetailHall(generic.DetailView):
@@ -37,17 +41,17 @@ class UpdateHall(generic.UpdateView):
     template_name = 'halls/update_hall.html'
     # fields user is allowed to update
     fields = ['title']
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('halls:dashboard')
 
 class DeleteHall(generic.DeleteView):
     model = Hall
     template_name = 'halls/delete_hall.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('halls:dashboard')
 
 class DeleteVideo(generic.DeleteView):
     model = Video
     template_name = 'halls/delete_video.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('halls:dashboard')
 
 def add_video(request, pk):
     # VideoFormSet = formset_factory(VideoForm, extra=5)

@@ -7,7 +7,14 @@
         <h3>Create New Hall of Fame!</h3>
         <form class="" action="{% url 'halls:create_hall' %}" method="POST">
             {% csrf_token %}
-            {% bootstrap_form form %}
+            {% load widget_tweaks %}
+            {% for field in form %}
+                <div class="form-group {% if field.errors %}alert alert-danger{% endif %} ">
+                    {{ field.erros }}
+                    {{ field.label_tag }}
+                    {% render_field field class='form-control' %}
+                </div>
+            {% endfor %}
             <input class="btn btn-primary btn-large" type="submit" value="Create">
         </form>
     </div>

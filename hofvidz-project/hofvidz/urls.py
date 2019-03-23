@@ -28,7 +28,7 @@ urlpatterns = [
     # djangos built in user model
     path('accounts/', include('django.contrib.auth.urls')),
     path('halloffame/', include('halls.urls', namespace='halls')),
-    path('dashboard/', views.Dashboard.as_view(), name='dashboard'),
+
 ]
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
