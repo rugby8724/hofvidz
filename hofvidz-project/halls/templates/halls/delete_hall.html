@@ -3,13 +3,13 @@
 
 {% block halls_content %}
 <div class="container">
-    <h1>Are you sure you want to delte this Hall of Fame</h1>
+    <h1>Are you sure you want to delete the {{ hall.title }} Hall of Fame</h1>
     <form class="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn btn-danger btn-large" value="Delete">
     </form>
-
+    <br>
     <h2><a href="{% url 'halls:detail_hall' hall.id %}">{{ hall.title }}</a></h2>
 </div>
 {% endblock %}
